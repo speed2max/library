@@ -433,6 +433,8 @@ module.exports.define = function (config = {}) {
                                     /^multiselect/,
                                     /^slider/,
                                     /^has-background-/,
+                                    /^has-text-/,
+                                    /^is-/,
                                     /^vc-/,
                                 ],
                             },
