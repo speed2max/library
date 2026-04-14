@@ -438,6 +438,7 @@ module.exports.define = function (config = {}) {
                                     /^vc-/,
                                     /^filepond/,
                                     /^panel/,
+                                    /^vue-advanced-cropper/,
                                 ],
                             },
                             defaultExtractor(content) {
