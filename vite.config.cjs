@@ -436,6 +436,8 @@ module.exports.define = function (config = {}) {
                                     /^has-text-/,
                                     /^is-/,
                                     /^vc-/,
+                                    /^filepond/,
+                                    /^panel/,
                                 ],
                             },
                             defaultExtractor(content) {
