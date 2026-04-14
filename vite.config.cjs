@@ -438,7 +438,7 @@ module.exports.define = function (config = {}) {
                                     /^vc-/,
                                     /^filepond/,
                                     /^panel/,
-                                    /^vue-advanced-cropper/,
+                                    /^vue-(advanced-cropper|bounding-box|circle-stencil|draggable-area|handler-wrapper|line-wrapper|preview|rectangle-stencil|simple-handler|simple-line)/,
                                     /^notyf/,
                                     /^pswp/,
                                     /^plyr/,
