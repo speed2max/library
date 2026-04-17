@@ -442,6 +442,8 @@ module.exports.define = function (config = {}) {
                                     /^notyf/,
                                     /^pswp/,
                                     /^plyr/,
+                                    /^icon--/,
+                                    /^label--/,
                                     /^simplebar/,
                                     /^bb-/,
                                     /^vti/,
