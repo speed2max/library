@@ -7,8 +7,8 @@ import {
 } from "@vueuse/core";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
-import { onMounted, onScopeDispose, provide, ref, computed } from "vue";
-import { } from "../../../stores/firebase";
+import { onMounted, provide, ref, computed } from "vue";
+import {} from "../../../stores/firebase";
 
 export type VGalleryProps = {
     backIcon?: string;
@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<VGalleryProps>(), {
     autoHeight: false,
     hideDots: false,
     autoPlay: false,
-    disableLoop: false
+    disableLoop: false,
 });
 
 const cursor = ref(0);
@@ -63,8 +63,7 @@ onMounted(() => {
 function removePage(index: number) {
     let hasFiltered = false;
     pages.value = pages.value.filter((p) => {
-        if (hasFiltered)
-            return true;
+        if (hasFiltered) return true;
         if (p.index === index) {
             hasFiltered = true;
             return false;
@@ -126,33 +125,49 @@ defineExpose({
     cursor,
     next,
     previous,
-    goTo
-})
+    goTo,
+});
 </script>
 
 <template>
-    <div class="v-gallery-container" :class="{ 'auto-height': autoHeight }" :style="{
-        height: autoHeight ? currentHeight : undefined,
-    }">
-        <VIconButton v-if="backIcon && pages.length > 1 && (!disableLoop || !isFirst)" class="previous" :icon="backIcon" @click.stop="
-            previous();
-            pause();
-        "></VIconButton>
+    <div
+        class="v-gallery-container"
+        :class="{ 'auto-height': autoHeight }"
+        :style="{
+            height: autoHeight ? currentHeight : undefined,
+        }">
+        <VIconButton
+            v-if="backIcon && pages.length > 1 && (!disableLoop || !isFirst)"
+            class="previous"
+            :icon="backIcon"
+            @click.stop="
+                previous();
+                pause();
+            "></VIconButton>
         <slot></slot>
 
-        <VIconButton v-if="forwardIcon && pages.length > 1 && (!disableLoop || !isLast)" class="next" :icon="forwardIcon" @click.stop="
-            next();
-            pause();
-        "></VIconButton>
-        <div class="cursors" v-if="!hideDots">
-            <button v-for="(page, index) in pages" :key="index" class="cursor" :class="{ active: index == cursor }"
+        <VIconButton
+            v-if="forwardIcon && pages.length > 1 && (!disableLoop || !isLast)"
+            class="next"
+            :icon="forwardIcon"
+            @click.stop="
+                next();
+                pause();
+            "></VIconButton>
+        <div v-if="!hideDots" class="cursors">
+            <button
+                v-for="(page, index) in pages"
+                :key="index"
+                class="cursor"
+                :class="{ active: index == cursor }"
                 :aria-label="`Go to slide ${index + 1}`"
                 @keydown="
                     cursor = index;
-                pause();
-                " @click="
+                    pause();
+                "
+                @click="
                     cursor = index;
-                pause();
+                    pause();
                 "></button>
         </div>
     </div>
@@ -165,7 +180,7 @@ defineExpose({
     position: relative;
     overflow: hidden;
 
-    >.button {
+    > .button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -188,7 +203,7 @@ defineExpose({
         }
     }
 
-    >.cursors {
+    > .cursors {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -202,28 +217,31 @@ defineExpose({
         .cursor {
             height: 24px;
             width: 24px;
+            padding: 6px;
             border: none;
             border-radius: 50%;
             background-color: $white-ter;
+            background-clip: content-box;
             margin: 0 5px;
             cursor: pointer;
             transition: background-color 0.5s ease-in-out;
 
             &.active {
                 background-color: $primary;
+                background-clip: content-box;
             }
         }
     }
 
     &.auto-height {
-        >.vgallery-page {
+        > .vgallery-page {
             height: auto;
             bottom: initial;
 
-            >* {
+            > * {
                 height: auto;
 
-                >img {
+                > img {
                     height: auto;
                 }
             }
