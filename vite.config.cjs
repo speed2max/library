@@ -449,6 +449,7 @@ module.exports.define = function (config = {}) {
                                     /^vti/,
                                     /^tippy/,
                                     /^apexcharts/,
+                                    /^flicking-/,
                                 ],
                             },
                             defaultExtractor(content) {
